@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Number" />
+            android:text="@string/first_number" />
         <EditText
             android:id="@+id/num1"
             android:layout_width="fill_parent"
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Second Number" />
+            android:text="@string/second_number" />
         <EditText
             android:id="@+id/num2"
             android:layout_width="fill_parent"
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Result" />
+            android:text="@string/result" />
         <EditText
             android:id="@+id/result"
             android:layout_width="fill_parent"
@@ -71,11 +71,11 @@
             <Button android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add" />
+                android:text="@string/add" />
             <Button android:id="@+id/subtract"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Subtract" />
+                android:text="@string/subtract" />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -85,15 +85,15 @@
             <Button android:id="@+id/multiply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Multiply" />
+                android:text="@string/multiply" />
             <Button android:id="@+id/divide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Divide" />
+                android:text="@string/divide" />
             <Button android:id="@+id/factorial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Factorial" />
+                android:text="@string/factorial" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

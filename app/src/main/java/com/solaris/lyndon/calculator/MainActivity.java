@@ -4,14 +4,52 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
+
+    Button add_button, subtract_btton, multiply_button, divide_button, fact_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Eventhandler buttonHandler = new Eventhandler();
+        add_button = (Button)findViewById(R.id.add);
+        subtract_btton = (Button)findViewById(R.id.subtract);
+        multiply_button = (Button)findViewById(R.id.multiply);
+        divide_button = (Button)findViewById(R.id.divide);
+        fact_button = (Button)findViewById(R.id.factorial);
+
+        add_button.setOnClickListener(buttonHandler);
+
+    }
+
+    class Eventhandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v){
+            switch (v.getId()){
+                case R.id.add :
+
+                    break;
+                case R.id.subtract :
+
+                    break;
+                case R.id.multiply :
+
+                    break;
+                case R.id.divide :
+
+                    break;
+                case R.id.factorial :
+
+                    break;
+
+            }
+        }
     }
 
 
@@ -32,5 +70,10 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public int buttonEventHandler(Button button){
+
+        return 2;
     }
 }
