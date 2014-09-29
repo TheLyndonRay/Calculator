@@ -6,18 +6,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
 
     Button add_button, subtract_btton, multiply_button, divide_button, fact_button;
 
+    TextView result = (TextView)findViewById(R.id.result);
+    TextView firstNumber = (TextView)findViewById(R.id.num1);
+    TextView secondNumber = (TextView)findViewById(R.id.num2);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Eventhandler buttonHandler = new Eventhandler();
+        EventHandler buttonHandler = new EventHandler();
         add_button = (Button)findViewById(R.id.add);
         subtract_btton = (Button)findViewById(R.id.subtract);
         multiply_button = (Button)findViewById(R.id.multiply);
@@ -25,14 +30,20 @@ public class MainActivity extends Activity {
         fact_button = (Button)findViewById(R.id.factorial);
 
         add_button.setOnClickListener(buttonHandler);
+        subtract_btton.setOnClickListener(buttonHandler);
+        multiply_button.setOnClickListener(buttonHandler);
+        divide_button.setOnClickListener(buttonHandler);
+        fact_button.setOnClickListener(buttonHandler);
 
     }
 
-    class Eventhandler implements View.OnClickListener {
+    class EventHandler implements View.OnClickListener {
         @Override
         public void onClick(View v){
             switch (v.getId()){
                 case R.id.add :
+
+                    result.setText("");
 
                     break;
                 case R.id.subtract :
