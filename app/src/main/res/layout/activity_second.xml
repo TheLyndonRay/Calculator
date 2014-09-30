@@ -19,6 +19,15 @@
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
             android:id="@+id/second_name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/age" />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:id="@+id/second_age"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
