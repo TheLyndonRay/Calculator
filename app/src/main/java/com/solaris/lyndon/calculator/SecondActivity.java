@@ -71,7 +71,7 @@ public class SecondActivity extends Activity {
         editor.putString("name", name);
         editor.commit();
 
-        Toast.makeText(getApplicationContext(), sp.getString("name", name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), sp.getString("name", name) + " has been saved!", Toast.LENGTH_SHORT).show();
     }
 
     class EventHandler implements View.OnClickListener {
