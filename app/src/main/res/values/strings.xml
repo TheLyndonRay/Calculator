@@ -17,4 +17,6 @@
     <string name="divide">/</string>
     <string name="factorial">FACT</string>
 
+    <string name="pick_date">PICK A DATE!</string>
+
 </resources>
