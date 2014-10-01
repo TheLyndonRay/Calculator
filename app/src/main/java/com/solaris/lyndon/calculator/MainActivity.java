@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 
         MathEventHandler mathHandler = new MathEventHandler();
         NonMathEventHandler nonMathEventHandler = new NonMathEventHandler();
+        FactorialHandler factorialHandler = new FactorialHandler();
         add_button = (Button)findViewById(R.id.add);
         subtract_button = (Button)findViewById(R.id.subtract);
         multiply_button = (Button)findViewById(R.id.multiply);
@@ -38,7 +39,8 @@ public class MainActivity extends Activity {
         subtract_button.setOnClickListener(mathHandler);
         multiply_button.setOnClickListener(mathHandler);
         divide_button.setOnClickListener(mathHandler);
-        fact_button.setOnClickListener(mathHandler);
+
+        fact_button.setOnClickListener(factorialHandler);
 
         second_activity.setOnClickListener(nonMathEventHandler);
 
@@ -126,23 +128,6 @@ public class MainActivity extends Activity {
                         result.setText(answer.toString(), TextView.BufferType.EDITABLE);
 
                         break;
-                    case R.id.factorial:
-
-                        Integer input = Integer.valueOf(firstNumber.getText().toString());
-                        Integer factorial = 1;
-                        for (int i = 1; i <= input; i++) {
-                            factorial = factorial * i;
-                        }
-
-                        result.setText(factorial.toString(), TextView.BufferType.EDITABLE);
-
-                        break;
-                    case R.id.next:
-
-                        startSecondActivity(second_activity);
-
-                        break;
-
                 }
             }
         }
@@ -158,6 +143,32 @@ public class MainActivity extends Activity {
                     startSecondActivity(second_activity);
 
                     break;
+            }
+        }
+    }
+
+    class FactorialHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v){
+            EditText result = (EditText)findViewById(R.id.result);
+            EditText firstNumber = (EditText)findViewById(R.id.num1);
+
+            if (firstNumber.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Gotta put a first number in dude", Toast.LENGTH_SHORT).show();
+            } else {
+                switch (v.getId()) {
+                    case R.id.factorial:
+
+                        Integer input = Integer.valueOf(firstNumber.getText().toString());
+                        Integer factorial = 1;
+                        for (int i = 1; i <= input; i++) {
+                            factorial = factorial * i;
+                        }
+
+                        result.setText(factorial.toString(), TextView.BufferType.EDITABLE);
+
+                        break;
+                }
             }
         }
     }
