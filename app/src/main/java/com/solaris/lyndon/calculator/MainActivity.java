@@ -18,14 +18,15 @@ public class MainActivity extends Activity {
     private final int GET_NAME_REQUEST_CODE = 0;
 
     Button add_button, subtract_button, multiply_button, divide_button, fact_button, second_activity;
-    TextView name;
+    EditText name, age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EventHandler buttonHandler = new EventHandler();
+        MathEventHandler mathHandler = new MathEventHandler();
+        NonMathEventHandler nonMathEventHandler = new NonMathEventHandler();
         add_button = (Button)findViewById(R.id.add);
         subtract_button = (Button)findViewById(R.id.subtract);
         multiply_button = (Button)findViewById(R.id.multiply);
@@ -33,12 +34,13 @@ public class MainActivity extends Activity {
         fact_button = (Button)findViewById(R.id.factorial);
         second_activity = (Button)findViewById(R.id.next);
 
-        add_button.setOnClickListener(buttonHandler);
-        subtract_button.setOnClickListener(buttonHandler);
-        multiply_button.setOnClickListener(buttonHandler);
-        divide_button.setOnClickListener(buttonHandler);
-        fact_button.setOnClickListener(buttonHandler);
-        second_activity.setOnClickListener(buttonHandler);
+        add_button.setOnClickListener(mathHandler);
+        subtract_button.setOnClickListener(mathHandler);
+        multiply_button.setOnClickListener(mathHandler);
+        divide_button.setOnClickListener(mathHandler);
+        fact_button.setOnClickListener(mathHandler);
+
+        second_activity.setOnClickListener(nonMathEventHandler);
 
     }
 
@@ -67,8 +69,10 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            name = (TextView)findViewById(R.id.name);
+            name = (EditText)findViewById(R.id.name);
+            age  = (EditText)findViewById(R.id.age);
             name.setText(data.getStringExtra("name"));
+            age.setText(data.getStringExtra("age"));
 
         } else {
             Toast.makeText(this, "No data received", Toast.LENGTH_SHORT).show();
@@ -82,7 +86,7 @@ public class MainActivity extends Activity {
         startActivityForResult(intent, GET_NAME_REQUEST_CODE);
     }
 
-    class EventHandler implements View.OnClickListener {
+    class MathEventHandler implements View.OnClickListener {
         @Override
         public void onClick(View v){
 
@@ -92,43 +96,64 @@ public class MainActivity extends Activity {
 
             Integer answer;
 
-            switch (v.getId()){
-                case R.id.add :
+            if (firstNumber.getText().toString().equals("") || secondNumber.getText().toString().equals("") ) {
+                Toast.makeText(getApplicationContext(), "Don't leave the stuff blank!", Toast.LENGTH_SHORT).show();
 
-                    answer = Integer.valueOf(firstNumber.getText().toString()) + Integer.valueOf(secondNumber.getText().toString());
-                    result.setText(answer.toString(), TextView.BufferType.EDITABLE);
+            } else {
 
-                    break;
-                case R.id.subtract :
+                switch (v.getId()) {
+                    case R.id.add:
 
-                    answer = Integer.valueOf(firstNumber.getText().toString()) - Integer.valueOf(secondNumber.getText().toString());
-                    result.setText(answer.toString(), TextView.BufferType.EDITABLE);
+                        answer = Integer.valueOf(firstNumber.getText().toString()) + Integer.valueOf(secondNumber.getText().toString());
+                        result.setText(answer.toString(), TextView.BufferType.EDITABLE);
 
-                    break;
-                case R.id.multiply :
+                        break;
+                    case R.id.subtract:
 
-                    answer = Integer.valueOf(firstNumber.getText().toString()) * Integer.valueOf(secondNumber.getText().toString());
-                    result.setText(answer.toString(), TextView.BufferType.EDITABLE);
+                        answer = Integer.valueOf(firstNumber.getText().toString()) - Integer.valueOf(secondNumber.getText().toString());
+                        result.setText(answer.toString(), TextView.BufferType.EDITABLE);
 
-                    break;
-                case R.id.divide :
+                        break;
+                    case R.id.multiply:
 
-                    answer = Integer.valueOf(firstNumber.getText().toString()) / Integer.valueOf(secondNumber.getText().toString());
-                    result.setText(answer.toString(), TextView.BufferType.EDITABLE);
+                        answer = Integer.valueOf(firstNumber.getText().toString()) * Integer.valueOf(secondNumber.getText().toString());
+                        result.setText(answer.toString(), TextView.BufferType.EDITABLE);
 
-                    break;
-                case R.id.factorial :
+                        break;
+                    case R.id.divide:
 
-                    Integer input = Integer.valueOf(firstNumber.getText().toString());
-                    Integer factorial = 1;
-                    for (int i = 1; i <= input; i++) {
-                        factorial = factorial * i;
-                    }
+                        answer = Integer.valueOf(firstNumber.getText().toString()) / Integer.valueOf(secondNumber.getText().toString());
+                        result.setText(answer.toString(), TextView.BufferType.EDITABLE);
 
-                    result.setText(factorial.toString(), TextView.BufferType.EDITABLE);
+                        break;
+                    case R.id.factorial:
 
-                    break;
-                case R.id.next :
+                        Integer input = Integer.valueOf(firstNumber.getText().toString());
+                        Integer factorial = 1;
+                        for (int i = 1; i <= input; i++) {
+                            factorial = factorial * i;
+                        }
+
+                        result.setText(factorial.toString(), TextView.BufferType.EDITABLE);
+
+                        break;
+                    case R.id.next:
+
+                        startSecondActivity(second_activity);
+
+                        break;
+
+                }
+            }
+        }
+    }
+
+    class NonMathEventHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View v){
+
+            switch (v.getId()) {
+                case R.id.next:
 
                     startSecondActivity(second_activity);
 
@@ -136,5 +161,4 @@ public class MainActivity extends Activity {
             }
         }
     }
-
 }
