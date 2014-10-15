@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
         MathEventHandler mathHandler = new MathEventHandler();
         NonMathEventHandler nonMathEventHandler = new NonMathEventHandler();
         FactorialHandler factorialHandler = new FactorialHandler();
+
         add_button = (Button)findViewById(R.id.add);
         subtract_button = (Button)findViewById(R.id.subtract);
         multiply_button = (Button)findViewById(R.id.multiply);
